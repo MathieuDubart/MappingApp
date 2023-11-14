@@ -1,27 +1,3 @@
-<template>
-  <div>
-    <!-- Div pour choisir une image -->
-    <div>
-      <h2>Choisissez une image :</h2>
-      <div v-for="(image, index) in images" :key="index" @click="selectImage(image)">
-        <img :src="image" alt="Image" width="50" height="50" />
-      </div>
-    </div>
-
-    <!-- Div pour afficher l'image choisie et la dupliquer -->
-    <div v-if="selectedImage">
-      <h2>Image choisie :</h2>
-      <div ref="draggableContainer">
-        <draggable v-model="imagesOnPage" :options="dragOptions">
-          <div v-for="(image, index) in imagesOnPage" :key="index">
-            <img :src="image" alt="Image" width="50" height="50" />
-          </div>
-        </draggable>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
 import { ref } from 'vue';
 import { VueDraggableNext }  from 'vue-draggable-next';
@@ -56,6 +32,32 @@ export default {
   },
 };
 </script>
+
+<template>
+  <div>
+
+    <!-- Div pour choisir une image -->
+    <div>
+      <h2>Choisissez une image :</h2>
+      <div v-for="(image, index) in images" :key="index" @click="selectImage(image)">
+        <img :src="image" alt="Image" width="50" height="50" />
+      </div>
+    </div>
+
+    <!-- Div pour afficher l'image choisie et la dupliquer -->
+    <div v-if="selectedImage">
+      <h2>Image choisie :</h2>
+      <div ref="draggableContainer">
+        <draggable v-model="imagesOnPage" :options="dragOptions">
+          <div v-for="(image, index) in imagesOnPage" :key="index">
+            <img :src="image" alt="Image" width="50" height="50" />
+          </div>
+        </draggable>
+      </div>
+    </div>
+    
+  </div>
+</template>
 
 <style>
 /* Ajoutez du style CSS au besoin */
