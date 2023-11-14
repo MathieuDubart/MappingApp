@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { ref, defineComponent} from 'vue';
 import VueDraggableNext  from 'vue-draggable-next';
 
-export default {
+export default defineComponent({
   components: {
     draggable: VueDraggableNext,
   },
@@ -54,7 +54,7 @@ export default {
       this.imagesOnPage.push(image);
     },
   },
-};
+});
 </script>
 
 <style>
