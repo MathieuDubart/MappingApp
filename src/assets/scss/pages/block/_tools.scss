@@ -55,10 +55,14 @@
   }
 
   .slide-range-container{
-    transform: rotate(-90deg);
-    margin-top: 54px;
-    margin-bottom: 54px;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    height: calc(129px + 8px);
+    width: calc(21px + 8px);
     .slide-container {
+
+      transform: rotate(-90deg);
       display: flex;
       justify-content: center;
       align-items: center;
