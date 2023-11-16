@@ -22,11 +22,11 @@
         <button v-for="(color, index) in colors" :key="index" @click="changeColor(color)" class="box"
                 :style="getPenColor(color)"></button>
       </div>
-      <div class="size-boxes-container">
-        <button @click="enableEraser">
-          Eraser
-        </button>
-      </div>
+
+      <button @click="enableEraser" class="size-boxes-container eraser">
+        <i class="pi pi-eraser" style="font-size: 1.5rem"></i>
+      </button>
+
       <img src="../assets/bin.svg" alt="clear" class="clear" @click="clearCanvas"/>
 
     </div>
