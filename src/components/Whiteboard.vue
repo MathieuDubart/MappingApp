@@ -1,13 +1,8 @@
 <template>
   <div class="whiteboard">
     <div class="tools">
-      <p>{{ toolsLabel }}</p>
 
-      <input v-model="isStickersOn" checked type="checkbox" id="switch" @click="updateToolsState(isStickersOn)"/>
-      <label for="switch"></label>
-
-      <p> Brush preview </p>
-      <div class="size-boxes-container brush-preview-container">
+      <div class="">
         <div class="brush-preview" :style="{width: `${rangeValue}px`, height: `${rangeValue}px`, backgroundColor: brushColor}"></div>
       </div>
 
@@ -32,13 +27,13 @@
     </div>
 
     <div class="canvas-wrapper">
+      <canvas class="canvas" ref="canvas"></canvas>
       <div class="stickers-container">
         <svg class="stickers" style=""></svg>
       </div>
-      <canvas class="canvas" ref="canvas"></canvas>
     </div>
   </div>
-  <a id="download"></a>
+  <!-- <a id="download"></a> -->
 </template>
 
 <script>
@@ -56,8 +51,6 @@ export default {
     return {
       message: "Drawing App",
       painting: false,
-      isStickersOn: false,
-      toolsLabel: "Stickers",
       canvas: null,
       ctx: null,
       colors: config.canvas.colors,
@@ -87,11 +80,10 @@ export default {
     // Set default stroke color
 
     // Resize canvas
-    const
-        whiteboard = document.getElementsByClassName('whiteboard')[0]
+    const whiteboard = document.getElementsByClassName('whiteboard')[0]
 
-    this.canvas.height = whiteboard.clientHeight
-    this.canvas.width = this.canvas.height * (1080 / 1920)
+    // this.canvas.height = whiteboard.clientHeight
+    // this.canvas.width = this.canvas.height * (1080 / 1920)
 
     this.setDeviceType()
     this.setupEventListeners()
@@ -102,15 +94,16 @@ export default {
     this.changeColor(this.colors[0])
     this.changeSize(brushSizes.default)
     this.ctx.lineCap = "round"
-    let stickersContainer = document.getElementsByClassName('stickers')[0]
 
-    window.addEventListener('resize', () => {
-      const whiteboard = document.getElementsByClassName('whiteboard')[0]
-      this.canvas.height = whiteboard.clientHeight
-      this.canvas.width = this.canvas.height * (1080 / 1920)
-    })
+    // window.addEventListener('resize', () => {
+    //   const whiteboard = document.getElementsByClassName('whiteboard')[0]
+    //   this.canvas.height = whiteboard.clientHeight
+    //   this.canvas.width = this.canvas.height * (1080 / 1920)
+    // })
+    window.addEventListener('resize', this.resizeCanvas, false)
 
-    stickersContainer.classList.add(this.isStickersOn)
+    this.resizeCanvas()
+
     await this.initTeachableMachine();
     this.prevCanvas = document.createElement('canvas');
     this.prevCanvas.width = this.canvas.width;
@@ -129,7 +122,22 @@ export default {
     this.updatePrevCanvas();
   },
   methods: {
+    resizeCanvas() {
+      const whiteboard = document.getElementsByClassName('whiteboard')[0]
+      const height = whiteboard.clientHeight;
+      const width = this.canvas.clientWidth;
 
+      this.canvas.style.height = height ;
+      
+      // if (height < width * (1920 / 1080)) { 
+      //     this.canvas.style.width = (height * (1080 / 1920)) + 'px';
+      // } else {
+      //     this.canvas.style.width = '100%';
+      // }
+
+      // this.canvas.width = this.canvas.clientWidth;
+      // this.canvas.height = this.canvas.clientHeight;
+    },
     enableEraser() {
       this.isEraserSelected = true;
     },
@@ -216,7 +224,7 @@ export default {
 
       // Utilisez le canvas des différences comme nécessaire
       // Par exemple, vous pouvez afficher le canvas des différences dans une image
-      console.log(this.diffCanvas.toDataURL());
+      // console.log(this.diffCanvas.toDataURL());
     },
 
     downloadImage(imageName) {
@@ -310,12 +318,6 @@ export default {
       // this.updatePrevCanvas();
       // Display predictions in the UI
 
-    },
-    updateToolsState(isStickersOn) {
-      let stickersContainer = document.getElementsByClassName('stickers')[0]
-      stickersContainer.classList.remove(this.isStickersOn)
-      this.isStickersOn = !isStickersOn
-      stickersContainer.classList.add(this.isStickersOn)
     },
     setDeviceType() {
       const platform = navigator.userAgentData.platform.toLowerCase()

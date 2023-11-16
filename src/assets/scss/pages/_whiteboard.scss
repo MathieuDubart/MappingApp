@@ -7,10 +7,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  border: 2vw solid $color_primary;
   transition: all 0.3s ease-in-out;
   
   .canvas-wrapper {
@@ -26,7 +22,6 @@
     }
     .canvas {
       background-color: $background_color_main;
-
       border-bottom-left-radius: 50% 5%;
       border-bottom-right-radius: 50% 5%;
     }
