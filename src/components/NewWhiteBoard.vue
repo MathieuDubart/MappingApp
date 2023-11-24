@@ -339,7 +339,7 @@ export default {
       this.updatePrevCanvas();
       // Display predictions in the UI
 
-
+      console.log(predictedLabel)
       if (predictedLabel === "love") {
         console.log("Coordonnées du dessin :", this.currentDrawing);
         let drawingBoundingBox = this.calculateBoundingBox(this.currentDrawing);
