@@ -350,7 +350,7 @@ export default {
       // } else {
         this.saveCanvasState();
 
-      }
+      // }
 
 
     }
