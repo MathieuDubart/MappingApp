@@ -151,6 +151,10 @@ export default {
             this.toggleFullscreen()
           }
       )
+      document.addEventListener("touchstart", () => {
+            this.toggleFullscreen()
+          }
+      )
     }
   },
   beforeUnmount() {
@@ -507,6 +511,7 @@ export default {
       this.canvas.addEventListener("touchend", this.finishedPainting);
       this.canvas.addEventListener("touchmove", (e) => {
         this.mobileDraw(e.touches[0])
+
       });
     }
     ,
