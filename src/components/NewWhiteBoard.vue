@@ -345,9 +345,9 @@ export default {
         let drawingBoundingBox = this.calculateBoundingBox(this.currentDrawing);
         this.drawBoundingBox(drawingBoundingBox);
       }
-      if (predictedLabel === "dick") {
-        this.restorePreviousCanvasState();
-      } else {
+      // if (predictedLabel === "dick") {
+        // this.restorePreviousCanvasState();
+      // } else {
         this.saveCanvasState();
 
       }
